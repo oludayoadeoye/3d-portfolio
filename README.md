@@ -1,3 +1,4 @@
+file:///home/dayo/Downloads/video/3dportfolio.gif
 
 credit from this tutorial
 [Final code](https://github.com/wass08/r3f-wawatmos-part-1)
