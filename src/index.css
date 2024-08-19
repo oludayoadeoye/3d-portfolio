@@ -89,11 +89,11 @@ body {
 }
 
 .spinner__image {
-  width: 164px;
-  height: 164px;
+  width: 150 px;
+  height: 150 px;
   background-size: contain;
-  background-image: url("/images/wawa.svg");
-  animation: rotate 10s linear infinite;
+  background-image: url("/images/dede.svg");
+  animation: rotate 15s linear infinite;
 }
 
 .intro--disappear .spinner {

@@ -7,6 +7,7 @@ import { Euler, Group, Vector3 } from "three";
 import { usePlay } from "../contexts/Play";
 import { fadeOnBeforeCompile } from "../utils/fadeMaterial";
 import { Airplane } from "./Airplane";
+import { Airship } from "./Airship";
 import { Background } from "./Background";
 import { Cloud } from "./Cloud";
 import { Speed } from "./Speed";
@@ -15,8 +16,8 @@ import { TextSection } from "./TextSection";
 const LINE_NB_POINTS = 1000;
 const CURVE_DISTANCE = 250;
 const CURVE_AHEAD_CAMERA = 0.008;
-const CURVE_AHEAD_AIRPLANE = 0.02;
-const AIRPLANE_MAX_ANGLE = 35;
+const CURVE_AHEAD_AIRSHIP = 0.02;
+const AIRSHIP_MAX_ANGLE = 35;
 const FRICTION_DISTANCE = 42;
 
 export const Experience = () => {
@@ -50,7 +51,7 @@ export const Experience = () => {
           curvePoints[1].y,
           curvePoints[1].z
         ),
-        subtitle: `Welcome to Wawatmos,
+        subtitle: `Welcome to Oludayo Portfolio.
 Have a seat and enjoy the ride!`,
       },
       {
@@ -61,8 +62,10 @@ Have a seat and enjoy the ride!`,
           curvePoints[2].z
         ),
         title: "Services",
-        subtitle: `Do you want a drink?
-We have a wide range of beverages!`,
+        subtitle: `Crafting Cutting-Edge Websites and
+         Mobile Apps with Spring Boot,
+         FastAPI, Django, React,
+         Angular, Golang, and Rust`,
       },
       {
         cameraRailDist: -1,
@@ -71,8 +74,8 @@ We have a wide range of beverages!`,
           curvePoints[3].y,
           curvePoints[3].z
         ),
-        title: "Fear of flying?",
-        subtitle: `Our flight attendants will help you have a great journey`,
+        title: "Want Something Beautiful?",
+        subtitle: `Let’s Collaborate on Your Next Masterpiece with 3D Web Design and Backend Expertise`,
       },
       {
         cameraRailDist: 1.5,
@@ -81,8 +84,8 @@ We have a wide range of beverages!`,
           curvePoints[4].y,
           curvePoints[4].z - 12
         ),
-        title: "Movies",
-        subtitle: `We provide a large selection of medias, we highly recommend you Porco Rosso during the flight`,
+        title: "Your Satisfaction is our Priority",
+        subtitle: `Delivering Tailored Web Solutions to Elevate Your Business, Backed by Experience in various Startups and  Top Telecom Test Development`,
       },
     ];
   }, []);
@@ -378,7 +381,7 @@ We have a wide range of beverages!`,
 
     // Airplane rotation
 
-    const tangent = curve.getTangent(lerpedScrollOffset + CURVE_AHEAD_AIRPLANE);
+    const tangent = curve.getTangent(lerpedScrollOffset + CURVE_AHEAD_AIRSHIP);
 
     const nonLerpLookAt = new Group();
     nonLerpLookAt.position.copy(curPoint);
@@ -397,34 +400,35 @@ We have a wide range of beverages!`,
 
     // LIMIT PLANE ANGLE
     if (angleDegrees < 0) {
-      angleDegrees = Math.max(angleDegrees, -AIRPLANE_MAX_ANGLE);
+      angleDegrees = Math.max(angleDegrees, -AIRSHIP_MAX_ANGLE);
     }
     if (angleDegrees > 0) {
-      angleDegrees = Math.min(angleDegrees, AIRPLANE_MAX_ANGLE);
+      angleDegrees = Math.min(angleDegrees, AIRSHIP_MAX_ANGLE);
     }
 
     // SET BACK ANGLE
     angle = (angleDegrees * Math.PI) / 180;
 
-    const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
+    const targetAirshipQuaternion = new THREE.Quaternion().setFromEuler(
       new THREE.Euler(
-        airplane.current.rotation.x,
-        airplane.current.rotation.y,
+        airship.current.rotation.x,
+        airship.current.rotation.y,
         angle
       )
     );
-    airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
+    airship.current.quaternion.slerp(targetAirshipQuaternion, delta * 2);
 
     if (
       cameraGroup.current.position.z <
       curvePoints[curvePoints.length - 1].z + 100
     ) {
       setEnd(true);
-      planeOutTl.current.play();
+      shipOutTl.current.play();
     }
   });
 
-  const airplane = useRef();
+  // const airship = useRef();
+  const airship = useRef();
 
   const tl = useRef();
   const backgroundColors = useRef({
@@ -432,8 +436,8 @@ We have a wide range of beverages!`,
     colorB: "#abaadd",
   });
 
-  const planeInTl = useRef();
-  const planeOutTl = useRef();
+  const shipInTl = useRef();
+  const shipOutTl = useRef();
 
   useLayoutEffect(() => {
     tl.current = gsap.timeline();
@@ -456,19 +460,19 @@ We have a wide range of beverages!`,
 
     tl.current.pause();
 
-    planeInTl.current = gsap.timeline();
-    planeInTl.current.pause();
-    planeInTl.current.from(airplane.current.position, {
+    shipInTl.current = gsap.timeline();
+    shipInTl.current.pause();
+    shipInTl.current.from(airship.current.position, {
       duration: 3,
       z: 5,
       y: -2,
     });
 
-    planeOutTl.current = gsap.timeline();
-    planeOutTl.current.pause();
+    shipOutTl.current = gsap.timeline();
+    shipOutTl.current.pause();
 
-    planeOutTl.current.to(
-      airplane.current.position,
+    shipOutTl.current.to(
+      airship.current.position,
       {
         duration: 10,
         z: -250,
@@ -476,7 +480,7 @@ We have a wide range of beverages!`,
       },
       0
     );
-    planeOutTl.current.to(
+    shipOutTl.current.to(
       cameraRail.current.position,
       {
         duration: 8,
@@ -484,7 +488,7 @@ We have a wide range of beverages!`,
       },
       0
     );
-    planeOutTl.current.to(airplane.current.position, {
+    shipOutTl.current.to(airship.current.position, {
       duration: 1,
       z: -1000,
     });
@@ -492,7 +496,7 @@ We have a wide range of beverages!`,
 
   useEffect(() => {
     if (play) {
-      planeInTl.current.play();
+      shipInTl.current.play();
     }
   }, [play]);
 
@@ -511,9 +515,15 @@ We have a wide range of beverages!`,
               makeDefault
             />
           </group>
-          <group ref={airplane}>
+          <group ref={airship}>
             <Float floatIntensity={1} speed={1.5} rotationIntensity={0.5}>
-              <Airplane
+              {/* <Airplane
+                rotation-y={Math.PI / 2}
+                scale={[0.2, 0.2, 0.2]}
+                position-y={0.1}
+              /> */}
+
+              <Airship
                 rotation-y={Math.PI / 2}
                 scale={[0.2, 0.2, 0.2]}
                 position-y={0.1}
