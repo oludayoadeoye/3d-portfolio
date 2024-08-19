@@ -1032,6 +1032,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remix-run/router@npm:1.19.1":
+  version: 1.19.1
+  resolution: "@remix-run/router@npm:1.19.1"
+  checksum: 10c0/9101fc96646e5107b6b0ef248d4c93bd965590c37ac02d35bcc57d1902467db7fc6eeec0a1fb97d0ce5bc96fae58e75239555e44a983239a61badba18e82d3b8
+  languageName: node
+  linkType: hard
+
 "@stitches/react@npm:1.2.8":
   version: 1.2.8
   resolution: "@stitches/react@npm:1.2.8"
@@ -2532,6 +2539,7 @@ __metadata:
     lamina: "npm:^1.1.23"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-router: "npm:^6.26.1"
     three: "npm:^0.150.1"
     vite: "npm:^4.1.0"
   languageName: unknown
@@ -2613,6 +2621,17 @@ __metadata:
   version: 0.14.0
   resolution: "react-refresh@npm:0.14.0"
   checksum: 10c0/b8ae07ad153357d77830928a7f1fc2df837aabefee907fa273ba04c7643f3b860e986f1d4b7ada9b721c8d79b8c24b5b911a314a1a2398b105f1b13d19ea2b8d
+  languageName: node
+  linkType: hard
+
+"react-router@npm:^6.26.1":
+  version: 6.26.1
+  resolution: "react-router@npm:6.26.1"
+  dependencies:
+    "@remix-run/router": "npm:1.19.1"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 10c0/463078e740462b42bb5ba8004448f33fc9e63778f432a4ed55c57b93c5b519e25fb17913ee8435b0fda33c6b9f75df8ef6fcb2c3a4f8db84fb546d202e29aa51
   languageName: node
   linkType: hard
 
